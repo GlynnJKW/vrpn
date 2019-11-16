@@ -721,6 +721,7 @@ SLIB_FILES =  $(LIB_FILES) \
 	vrpn_Tracker_SpacePoint.C \
 	vrpn_Tracker_TrivisioColibri.C \
 	vrpn_Tracker_ViewPoint.C \
+	vrpn_Tracker_Vive.cpp \
 	vrpn_Tracker_WiimoteHead.C \
 	vrpn_Tracker_Wintracker.C \
 	vrpn_Tracker_isense.C \
@@ -816,6 +817,7 @@ SLIB_INCLUDES = $(LIB_INCLUDES) \
 	vrpn_Tracker_SpacePoint.h \
 	vrpn_Tracker_TrivisioColibri.h \
 	vrpn_Tracker_ViewPoint.h \
+	vrpn_Tracker_Vive.h \
 	vrpn_Tracker_WiimoteHead.h \
 	vrpn_Tracker_Wintracker.h \
 	vrpn_Tracker_isense.h \

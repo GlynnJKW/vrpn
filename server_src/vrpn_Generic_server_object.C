@@ -105,6 +105,7 @@
 #include "vrpn_Tracker_Wintracker.h"      // for vrpn_Tracker_Wintracker
 #include "vrpn_Tracker_zSight.h"          // added by David Borland
 #include "vrpn_UNC_Joystick.h"            // for vrpn_Joystick
+#include "vrpn_Tracker_Vive.h"			  // for vrpn_Tracker_Vive (added by Glynn Williams)
 #include "vrpn_VPJoystick.h"              // for vrpn_VPJoystick
 #include "vrpn_Wanda.h"                   // for vrpn_Wanda
 #include "vrpn_WiiMote.h"
@@ -867,6 +868,27 @@ int vrpn_Generic_Server_Object::setup_Spaceball(char *&pch, char *line,
     if (verbose)
         printf("Opening vrpn_Spaceball: %s on port %s, baud %d\n", s2, s3, i1);
     _devices->add(new vrpn_Spaceball(s2, connection, s3, i1));
+
+    return 0;
+}
+
+int vrpn_Generic_Server_Object::setup_Tracker_Vive(char *&pch, char *line,
+                                                FILE * /*config_file*/)
+{
+    char s2[LINESIZE];
+    int i1, i2, i3;
+
+    VRPN_CONFIG_NEXT();
+    // Get the arguments (class, magellan_name, port, baud
+    if (sscanf(pch, "%511s %d %d %d", &s2, &i1, &i2, &i3) != 4) {
+        fprintf(stderr, "Bad vrpn_Tracker_Vive line: %s\n", line);
+        return -1;
+    }
+
+    // Open the device
+    if (verbose)
+        printf("Opening vrpn_Tracker_Vive: %d headsets, %d controllers, %d trackers\n", i1, i2, i3);
+    _devices->add(new vrpn_Tracker_Vive(s2, connection, i1, i2, i3));
 
     return 0;
 }
@@ -5305,6 +5327,9 @@ vrpn_Generic_Server_Object::vrpn_Generic_Server_Object(
             }
             else if (VRPN_ISIT("vrpn_Spaceball")) {
                 VRPN_CHECK(setup_Spaceball);
+            }
+            else if (VRPN_ISIT("vrpn_Tracker_Vive")) {
+                VRPN_CHECK(setup_Tracker_Vive);
             }
             else if (VRPN_ISIT("vrpn_Radamec_SPI")) {
                 VRPN_CHECK(setup_Radamec_SPI);

@@ -58,6 +58,7 @@ protected:
     int setup_CerealBox(char *&pch, char *line, FILE * /*config_file*/);
     int setup_Magellan(char *&pch, char *line, FILE * /*config_file*/);
     int setup_Spaceball(char *&pch, char *line, FILE * /*config_file*/);
+    int setup_Tracker_Vive(char *&pch, char *line, FILE * /*config_file*/);
     int setup_Radamec_SPI(char *&pch, char *line, FILE * /*config_file*/);
     int setup_Zaber(char *&pch, char *line, FILE * /*config_file*/);
     int setup_BiosciencesTools(char *&pch, char *line, FILE * /*config_file*/);

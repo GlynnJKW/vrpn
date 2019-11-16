@@ -77,6 +77,11 @@ if(VRPN_USE_PHANTOM_SERVER AND OPENGL_FOUND)
 	set(VRPNPHANTOMLIB vrpn_phantom)
 endif()
 
+#-----------------------------------------------------------------
+if(VRPN_USE_OPENVR AND OPENVR_FOUND)
+	include_directories(${OPENVR_INCLUDE_DIR})
+endif()
+
 #------------------------------------------------------------------
 # DirectShow video server - only for pre-VS10 due to header removal
 if(VRPN_BUILD_DIRECTSHOW_VIDEO_SERVER AND DIRECTSHOW_FOUND)
@@ -100,7 +105,8 @@ target_link_libraries(vrpn_server
 	vrpn_timecode_generator
 	${VRPN_ATMEL_LIBRARY}
 	${VRPN_GPSNMEA_LIBRARY}
-	${VRPNPHANTOMLIB})
+	${VRPNPHANTOMLIB}
+	${OPENVR_LIBRARY})
 set_target_properties(vrpn_server PROPERTIES SOLUTION_FOLDER servers)
 set_property(TARGET
 	vrpn_server

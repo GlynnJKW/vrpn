@@ -880,6 +880,19 @@ if(VRPN_USE_COLIBRIAPI)
 endif()
 
 ###
+# OpenVR
+###
+find_package(OpenVR ${QUIET_IF_SUBPROJECT})
+option_requires(VRPN_USE_OPENVR
+	"Build with OpenVR support"
+	ON
+	OPENVR_FOUND)
+if(VRPN_USE_OPENVR)
+	include_directories(${OPENVR_INCLUDE_DIR})
+endif()
+
+
+###
 # XXX Other libraries needing detection and handling (TODO)
 ###
 # National Instruments Nidaq traditional
@@ -1151,6 +1164,7 @@ set(VRPN_SERVER_SOURCES
 	vrpn_Tracker_Wintracker.C
 	vrpn_Tracker_Colibri.C
 	vrpn_Tracker_TrivisioColibri.C
+	vrpn_Tracker_Vive.cpp
 	vrpn_Tracker_WiimoteHead.C
 	vrpn_Tracker_zSight.C
 	vrpn_Tracker_ViewPoint.C
@@ -1264,6 +1278,7 @@ set(VRPN_SERVER_PUBLIC_HEADERS
 	vrpn_Tracker_Wintracker.h
 	vrpn_Tracker_Colibri.h
 	vrpn_Tracker_TrivisioColibri.h
+	vrpn_Tracker_Vive.h
 	vrpn_Tracker_WiimoteHead.h
 	vrpn_Tracker_zSight.h
 	vrpn_Tracker_ViewPoint.h
